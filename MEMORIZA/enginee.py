@@ -179,7 +179,7 @@ def persona_vs_maquina(colums, filas):
                             desconocidas.append((f, c))
 
                 if len(desconocidas) < 2:
-                    print("El juego ha terminado, ha ganado la CPU")
+                    print("El juego ha terminado, ha ganado la CPU.")
                     break
 
                 fila1, col1 = random.choice(desconocidas)
