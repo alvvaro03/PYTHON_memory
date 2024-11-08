@@ -141,7 +141,7 @@ def persona_vs_maquina(colums, filas):
                 print("No coinciden, cambio de turno.")
                 tablero_vacio[fila1][col1] = "-"
                 tablero_vacio[fila2][col2] = "-"
-                turno_jugador = not turno_jugador  # Cambio de turno
+                turno_jugador = not turno_jugador 
         else:
             print("\nTurno de la Máquina.")
             pareja_encontrada = False
@@ -168,8 +168,8 @@ def persona_vs_maquina(colums, filas):
                 Inicio_tablero(tablero_vacio)
 
                 print("¡La máquina ha encontrado una pareja!")
-                # La máquina sigue jugando, no cambia el turno
-                continue  # Continua el bucle para que la máquina siga jugando
+                # Continua el bucle para que la máquina siga jugando
+                continue  
             else:
                 # Si no encuentra pareja conocida, elige celdas aleatorias que no haya descubierto
                 desconocidas = []
@@ -193,13 +193,14 @@ def persona_vs_maquina(colums, filas):
 
                 if tablero[fila1][col1] == tablero[fila2][col2]:
                     print("¡La máquina ha encontrado una pareja!")
-                    # La máquina sigue jugando, no cambia el turno
-                    continue  # Continua el bucle para que la máquina siga jugando
+                    # Continua el bucle para que la máquina siga jugando
+                    continue  
                 else:
                     print("No coinciden, cambio de turno.")
                     tablero_vacio[fila1][col1] = "-"
                     tablero_vacio[fila2][col2] = "-"
-                    turno_jugador = True  # El turno pasa al jugador
+                    #Cambio de turno
+                    turno_jugador = True 
 
                 # Actualiza la memoria de la máquina
                 memoria_maquina[(fila1, col1)] = tablero[fila1][col1]
@@ -217,6 +218,6 @@ def persona_vs_maquina(colums, filas):
 
         if juego_terminado:
             print("\n¡El juego ha terminado!")
-            break  # Sale del ciclo de juego y termina
+            break  
     input()
 Modos_juego()
