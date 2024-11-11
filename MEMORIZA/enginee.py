@@ -66,8 +66,8 @@ def Modos_juego():
 
 def persona_vs_persona(colums, filas):
     tablero_vacio, tablero = Inicio(colums, filas)
-    puntos_jugador1 = 0
-    puntos_jugador2 = 0
+    parejas_jugador1 = 0
+    parejas_jugador2 = 0
     turno = True
 
     while True:
@@ -95,6 +95,10 @@ def persona_vs_persona(colums, filas):
         # Comprobar si las cartas coinciden
         if tablero[fila1][col1] == tablero[fila2][col2]:
             print(f"¡{jugador_actual} ha encontrado una pareja!")
+            if turno:
+                parejas_jugador1 += 1
+            else:
+                parejas_jugador2 += 1
         else:
             print("No coinciden, cambio de turno.")
             tablero_vacio[fila1][col1] = "-"
@@ -113,6 +117,18 @@ def persona_vs_persona(colums, filas):
         if juego_terminado:
             print("\n¡El juego ha terminado!")
             break
+    print("\n--- Resultados ---")
+    print(f"Jugador 1: {parejas_jugador1} parejas")
+    print(f"Jugador 2: {parejas_jugador2} parejas")
+    if parejas_jugador1 > parejas_jugador2:
+        print("¡Ganador: Jugador 1!")
+        input()
+    elif parejas_jugador2 > parejas_jugador1:
+        print("¡Ganador: Jugador 2!")
+        input()
+    else:
+        print("¡Es un empate!")
+        input()
 
 def persona_vs_maquina(colums, filas):
     tablero_vacio, tablero = Inicio(colums, filas)
