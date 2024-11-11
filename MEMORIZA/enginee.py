@@ -243,5 +243,49 @@ def maquina_vs_maquina(colums, filas):
             memoria_actual = memoria_maquina2
             parejas_actual = parejas_maquina2
 
-        
+        pareja_encontrada = False
+        ubicaciones_por_valor = {}
+
+        # Identifica la posicion con un emoji
+        for (fila, col), valor in memoria_actual.items():
+            if valor not in ubicaciones_por_valor:
+                ubicaciones_por_valor[valor] = []
+            ubicaciones_por_valor[valor].append((fila, col))
+
+        # Busca si existe alguna pareja en la ubicacion de antes
+        for posiciones in ubicaciones_por_valor.values():
+            if len(posiciones) >= 2: 
+                fila1, col1 = posiciones[0]
+                fila2, col2 = posiciones[1]
+                pareja_encontrada = True
+                break
+
+        if pareja_encontrada:
+            print(f"La máquina recuerda una pareja en las posiciones ({fila1+1},{col1+1}) y ({fila2+1},{col2+1}).")
+            tablero_vacio[fila1][col1] = tablero[fila1][col1]
+            tablero_vacio[fila2][col2] = tablero[fila2][col2]
+            Inicio_tablero(tablero_vacio)
+
+            print(f"¡Máquina {'1' if turno_maquina1 else '2'} ha encontrado una pareja!")
+            parejas_actual += 1
+
+            # Asigna las parejas al jugador actual
+            if turno_maquina1:
+                parejas_maquina1 = parejas_actual
+            else:
+                parejas_maquina2 = parejas_actual
+            # La máquina continúa jugando si acierta
+            continue  
+        else:
+            # Si no encuentra pareja conocida, elige celdas aleatorias que no haya descubierto
+            desconocidas = []
+            for f in range(filas):
+                for c in range(colums):
+                    if tablero_vacio[f][c] == "-":
+                        desconocidas.append((f, c))
+
+            if len(desconocidas) < 2:
+                print("\nEl juego ha terminado.")
+                break
+
 Modos_juego()
