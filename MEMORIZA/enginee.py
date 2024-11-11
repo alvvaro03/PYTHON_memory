@@ -118,6 +118,8 @@ def persona_vs_maquina(colums, filas):
     tablero_vacio, tablero = Inicio(colums, filas)
     memoria_maquina = {}
     turno_jugador = True
+    parejas_jugador = 0
+    parejas_maquina = 0
 
     while True:
         print("\nTablero actual:")
@@ -138,6 +140,7 @@ def persona_vs_maquina(colums, filas):
 
             if tablero[fila1][col1] == tablero[fila2][col2]:
                 print("¡Jugador ha encontrado una pareja!")
+                parejas_jugador += 1
             else:
                 print("No coinciden, cambio de turno.")
                 tablero_vacio[fila1][col1] = "-"
@@ -169,6 +172,7 @@ def persona_vs_maquina(colums, filas):
                 Inicio_tablero(tablero_vacio)
 
                 print("¡La máquina ha encontrado una pareja!")
+                parejas_maquina += 1
                 # Continua el bucle para que la máquina siga jugando
                 continue  
             else:
@@ -220,7 +224,18 @@ def persona_vs_maquina(colums, filas):
         if juego_terminado:
             print("\n¡El juego ha terminado!")
             break  
-    input()
+    print("\n--- Resultados ---")
+    print(f"Jugador: {parejas_jugador} parejas")
+    print(f"Máquina: {parejas_maquina} parejas")
+    if parejas_jugador > parejas_maquina:
+        print("¡Ganador: Jugador!")
+        input()
+    elif parejas_maquina > parejas_jugador:
+        print("¡Ganador: Máquina!")
+        input()
+    else:
+        print("¡Es un empate!")
+        input()
 
 def maquina_vs_maquina(colums, filas):
     tablero_vacio, tablero = Inicio(colums, filas)
