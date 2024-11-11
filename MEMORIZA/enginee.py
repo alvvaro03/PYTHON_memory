@@ -57,8 +57,9 @@ def Modos_juego():
             filas = int(input("Dime cuantas filas quieres para el tablero "))
             persona_vs_maquina(colums, filas)
         elif(usuario == 3):
-            print("\nEstá en desarrollo... \n")
-            Modos_juego()
+            colums = int(input("Dime cuantas columnas quieres para el tablero "))
+            filas = int(input("Dime cuantas filas quieres para el tablero "))
+            maquina_vs_maquina(colums, filas)
         else:
             print("No existe ese modo de juego")
             Modos_juego()
@@ -220,4 +221,27 @@ def persona_vs_maquina(colums, filas):
             print("\n¡El juego ha terminado!")
             break  
     input()
+
+def maquina_vs_maquina(colums, filas):
+    tablero_vacio, tablero = Inicio(colums, filas)
+    memoria_maquina1 = {}
+    memoria_maquina2 = {}
+    turno_maquina1 = True
+    parejas_maquina1 = 0
+    parejas_maquina2 = 0
+
+    while True:
+        print("\nTablero actual:")
+        Inicio_tablero(tablero_vacio)
+
+        if turno_maquina1:
+            print("\nTurno de la Máquina 1.")
+            memoria_actual = memoria_maquina1
+            parejas_actual = parejas_maquina1
+        else:
+            print("\nTurno de la Máquina 2.")
+            memoria_actual = memoria_maquina2
+            parejas_actual = parejas_maquina2
+
+        
 Modos_juego()
