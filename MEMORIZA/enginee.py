@@ -287,5 +287,51 @@ def maquina_vs_maquina(colums, filas):
             if len(desconocidas) < 2:
                 print("\nEl juego ha terminado.")
                 break
+            
+            fila1, col1 = random.choice(desconocidas)
+            desconocidas.remove((fila1, col1))
+            fila2, col2 = random.choice(desconocidas)
+
+            print(f"La máquina selecciona posiciones al azar: ({fila1+1},{col1+1}) y ({fila2+1},{col2+1}).")
+            tablero_vacio[fila1][col1] = tablero[fila1][col1]
+            tablero_vacio[fila2][col2] = tablero[fila2][col2]
+            Inicio_tablero(tablero_vacio)
+
+            if tablero[fila1][col1] == tablero[fila2][col2]:
+                print(f"¡Máquina {'1' if turno_maquina1 else '2'} ha encontrado una pareja!")
+                parejas_actual += 1
+
+                # Cuando le toca a cada maquina se le asigna pareja_actual para poder sumar
+                if turno_maquina1:
+                    parejas_maquina1 = parejas_actual
+                else:
+                    parejas_maquina2 = parejas_actual
+                # La máquina sigue jugando si encuentra una pareja
+                continue
+            else:
+                print("No coinciden, cambio de turno.")
+                tablero_vacio[fila1][col1] = "-"
+                tablero_vacio[fila2][col2] = "-"
+
+            # Actualiza la memoria de la máquina actual
+            memoria_actual[(fila1, col1)] = tablero[fila1][col1]
+            memoria_actual[(fila2, col2)] = tablero[fila2][col2]
+
+        # Cambio de turno
+        turno_maquina1 = not turno_maquina1
+
+        # Comprueba si la partida ha acabado
+        juego_terminado = True
+        for f in tablero_vacio:
+            for c in f:
+                if c == "-":
+                    juego_terminado = False
+                    break
+            if not juego_terminado:
+                break
+
+        if juego_terminado:
+            print("\n¡El juego ha terminado!")
+            break
 
 Modos_juego()
