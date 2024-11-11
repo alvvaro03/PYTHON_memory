@@ -334,4 +334,18 @@ def maquina_vs_maquina(colums, filas):
             print("\n¡El juego ha terminado!")
             break
 
+    # Vemos quien gana
+    print("\n--- Resultados ---")
+    print(f"Máquina 1: {parejas_maquina1} parejas")
+    print(f"Máquina 2: {parejas_maquina2} parejas")
+    if parejas_maquina1 > parejas_maquina2:
+        print("¡Ganadora: Máquina 1!")
+        input()
+    elif parejas_maquina2 > parejas_maquina1:
+        print("¡Ganadora: Máquina 2!")
+        input()
+    else:
+        print("¡Es un empate!")
+        input()
+
 Modos_juego()
