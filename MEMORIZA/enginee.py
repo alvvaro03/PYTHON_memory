@@ -117,6 +117,7 @@ def persona_vs_persona(colums, filas):
         if juego_terminado:
             print("\n¡El juego ha terminado!")
             break
+    # Vemos quien gana
     print("\n--- Resultados ---")
     print(f"Jugador 1: {parejas_jugador1} parejas")
     print(f"Jugador 2: {parejas_jugador2} parejas")
@@ -215,6 +216,7 @@ def persona_vs_maquina(colums, filas):
                 if tablero[fila1][col1] == tablero[fila2][col2]:
                     print("¡La máquina ha encontrado una pareja!")
                     # Continua el bucle para que la máquina siga jugando
+                    parejas_maquina +=1
                     continue  
                 else:
                     print("No coinciden, cambio de turno.")
@@ -240,6 +242,7 @@ def persona_vs_maquina(colums, filas):
         if juego_terminado:
             print("\n¡El juego ha terminado!")
             break  
+    # Vemos quien gana
     print("\n--- Resultados ---")
     print(f"Jugador: {parejas_jugador} parejas")
     print(f"Máquina: {parejas_maquina} parejas")
@@ -280,6 +283,7 @@ def maquina_vs_maquina(colums, filas):
         # Identifica la posicion con un emoji
         for (fila, col), valor in memoria_actual.items():
             if valor not in ubicaciones_por_valor:
+                #Si el valor aún no existe como clave, se crea una entrada con una lista vacía
                 ubicaciones_por_valor[valor] = []
             ubicaciones_por_valor[valor].append((fila, col))
 
@@ -292,7 +296,7 @@ def maquina_vs_maquina(colums, filas):
                 break
 
         if pareja_encontrada:
-            print(f"La máquina recuerda una pareja en las posiciones ({fila1+1},{col1+1}) y ({fila2+1},{col2+1}).")
+            print(f"La máquina recuerda una pareja en las posiciones ({fila1+1},{col1+1}) y ({fila2+1},{col2+1}).")    
             tablero_vacio[fila1][col1] = tablero[fila1][col1]
             tablero_vacio[fila2][col2] = tablero[fila2][col2]
             Inicio_tablero(tablero_vacio)
@@ -331,7 +335,6 @@ def maquina_vs_maquina(colums, filas):
             if tablero[fila1][col1] == tablero[fila2][col2]:
                 print(f"¡Máquina {'1' if turno_maquina1 else '2'} ha encontrado una pareja!")
                 parejas_actual += 1
-
                 # Cuando le toca a cada maquina se le asigna pareja_actual para poder sumar
                 if turno_maquina1:
                     parejas_maquina1 = parejas_actual
